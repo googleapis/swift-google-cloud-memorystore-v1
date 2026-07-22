@@ -17,18 +17,18 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Request for `ExportBackup`.
-public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+/// Request for `StartMigration`.
+public struct StartMigrationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. Instance backup resource name using the form:
-  /// `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}/backups/{backup_id}`
+  /// Required. The resource name of the instance to start migration on.
+  /// Format: projects/{project}/locations/{location}/instances/{instance}
   public var name: Swift.String = Swift.String()
 
-  /// Required. Specify destination to export a backup.
-  public var destination: OneOf_Destination? = nil
+  /// Defines the source of the migration.
+  public var source: OneOf_Source? = nil
 
-  /// Initialize a new instance of `ExportBackupRequest`.
+  /// Initialize a new instance of `StartMigrationRequest`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -36,7 +36,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ExportBackupRequest().with { $0.gcsBucket = ... }
+  /// let value = StartMigrationRequest().with { $0.selfManagedSource = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -45,7 +45,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   private enum CodingKeys: Swift.String, CodingKey {
-    case gcsBucket = "gcsBucket"
+    case selfManagedSource = "selfManagedSource"
     case name = "name"
   }
 
@@ -53,42 +53,45 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
 
-    var destination: OneOf_Destination? = nil
-    let destinationCheckAndSet = {
-      if destination != nil {
+    var source: OneOf_Source? = nil
+    let sourceCheckAndSet = {
+      if source != nil {
         throw DecodingError.dataCorrupted(
           DecodingError.Context(
             codingPath: decoder.codingPath,
-            debugDescription: "Multiple values set for oneof 'destination'"))
+            debugDescription: "Multiple values set for oneof 'source'"))
       }
-      destination = $0
+      source = $0
     }
-    if let gcsBucket = try container.decodeIfPresent(Swift.String.self, forKey: .gcsBucket) {
-      try destinationCheckAndSet(.gcsBucket(gcsBucket))
+    if let selfManagedSource = try container.decodeIfPresent(
+      SelfManagedSource?.self, forKey: .selfManagedSource)
+    {
+      try sourceCheckAndSet(.selfManagedSource(selfManagedSource))
     }
-    self.destination = destination
+    self.source = source
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
 
-    if let choice = self.destination {
+    if let choice = self.source {
       switch choice {
-      case .gcsBucket(let value):
-        try container.encode(value, forKey: .gcsBucket)
+      case .selfManagedSource(let value):
+        try container.encode(value, forKey: .selfManagedSource)
       }
     }
   }
 
-  /// Required. Specify destination to export a backup.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
-    /// Google Cloud Storage bucket, like "my-bucket".
-    case gcsBucket(Swift.String)
+  /// Defines the source of the migration.
+  public enum OneOf_Source: Codable, Equatable, Sendable {
+    /// Required. Configuration for migrating from a self-managed Valkey/Redis
+    /// instance
+    indirect case selfManagedSource(SelfManagedSource?)
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.memorystore.v1.ExportBackupRequest"
+    return "type.googleapis.com/google.cloud.memorystore.v1.StartMigrationRequest"
   }
   public init(fromAny any: GoogleCloudWkt.`Any`) throws {
     self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

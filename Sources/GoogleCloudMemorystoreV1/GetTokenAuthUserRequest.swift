@@ -17,30 +17,16 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Request for `ListBackupCollections`.
-public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+/// Request message for `GetTokenAuthUser`.
+public struct GetTokenAuthUserRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. The resource name of the backupCollection location using the
-  /// form:
-  ///     `projects/{project_id}/locations/{location_id}`
-  /// where `location_id` refers to a Google Cloud region.
-  public var parent: Swift.String = Swift.String()
+  /// Required. The name of token auth user for a basic auth enabled instance.
+  /// Format:
+  /// projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}
+  public var name: Swift.String = Swift.String()
 
-  /// Optional. The maximum number of items to return.
-  ///
-  /// If not specified, a default value of 1000 will be used by the service.
-  /// Regardless of the page_size value, the response may include a partial list
-  /// and a caller should only rely on response's
-  /// `next_page_token`
-  /// to determine if there are more clusters left to be queried.
-  public var pageSize: Swift.Int32 = Swift.Int32()
-
-  /// Optional. The `next_page_token` value returned from a previous
-  /// `ListBackupCollections` request, if any.
-  public var pageToken: Swift.String = Swift.String()
-
-  /// Initialize a new instance of `ListBackupCollectionsRequest`.
+  /// Initialize a new instance of `GetTokenAuthUserRequest`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +34,7 @@ public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ListBackupCollectionsRequest().with { $0.parent = ... }
+  /// let value = GetTokenAuthUserRequest().with { $0.name = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -57,7 +43,7 @@ public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.memorystore.v1.ListBackupCollectionsRequest"
+    return "type.googleapis.com/google.cloud.memorystore.v1.GetTokenAuthUserRequest"
   }
   public init(fromAny any: GoogleCloudWkt.`Any`) throws {
     self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

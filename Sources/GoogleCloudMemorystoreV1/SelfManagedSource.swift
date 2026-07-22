@@ -17,22 +17,33 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Represents an endpoint for clients to connect to the instance.
-public struct DiscoveryEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+/// Details of the self-managed source instance.
+public struct SelfManagedSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Output only. IP address of the exposed endpoint clients connect to.
-  public var address: Swift.String = Swift.String()
+  /// Required. The IP address of the source instance.
+  /// This IP address should be a stable IP address that can be accessed by the
+  /// Memorystore instance throughout the migration process.
+  public var ipAddress: Swift.String = Swift.String()
 
-  /// Output only. The port number of the exposed endpoint.
+  /// Required. The port of the source instance.
+  /// This port should be a stable port that can be accessed by the Memorystore
+  /// instance throughout the migration process.
   public var port: Swift.Int32 = Swift.Int32()
 
-  /// Output only. The network where the IP address of the discovery endpoint
-  /// will be reserved, in the form of
-  /// projects/{network_project}/global/networks/{network_name}.
-  public var network: Swift.String = Swift.String()
+  /// Required. The resource name of the Private Service Connect Network
+  /// Attachment used to establish connectivity to the source instance. This
+  /// network attachment has the following requirements:
+  /// 1. It must be in the same project as the Memorystore instance.
+  /// 2. It must be in the same region as the Memorystore instance.
+  /// 3. The subnet attached to the network attachment must be in the same VPC
+  /// network as the source instance nodes.
+  ///
+  /// Format:
+  /// projects/{project}/regions/{region}/networkAttachments/{network_attachment}
+  public var networkAttachment: Swift.String = Swift.String()
 
-  /// Initialize a new instance of `DiscoveryEndpoint`.
+  /// Initialize a new instance of `SelfManagedSource`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -40,7 +51,7 @@ public struct DiscoveryEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = DiscoveryEndpoint().with { $0.address = ... }
+  /// let value = SelfManagedSource().with { $0.ipAddress = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -49,7 +60,7 @@ public struct DiscoveryEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.memorystore.v1.DiscoveryEndpoint"
+    return "type.googleapis.com/google.cloud.memorystore.v1.SelfManagedSource"
   }
   public init(fromAny any: GoogleCloudWkt.`Any`) throws {
     self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

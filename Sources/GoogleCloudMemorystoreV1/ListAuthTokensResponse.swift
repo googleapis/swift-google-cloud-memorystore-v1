@@ -15,32 +15,25 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 import GoogleCloudWkt
 
-/// Request for `ListBackupCollections`.
-public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+/// Response message for `ListAuthTokens`.
+public struct ListAuthTokensResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  GoogleCloudGax._PaginatedResponse,
   Sendable
 {
-  /// Required. The resource name of the backupCollection location using the
-  /// form:
-  ///     `projects/{project_id}/locations/{location_id}`
-  /// where `location_id` refers to a Google Cloud region.
-  public var parent: Swift.String = Swift.String()
+  /// A list of auth tokens in the project.
+  public var authTokens: [AuthToken] = []
 
-  /// Optional. The maximum number of items to return.
-  ///
-  /// If not specified, a default value of 1000 will be used by the service.
-  /// Regardless of the page_size value, the response may include a partial list
-  /// and a caller should only rely on response's
-  /// `next_page_token`
-  /// to determine if there are more clusters left to be queried.
-  public var pageSize: Swift.Int32 = Swift.Int32()
+  /// Token to retrieve the next page of results, or empty if there are no more
+  /// results in the list.
+  public var nextPageToken: Swift.String = Swift.String()
 
-  /// Optional. The `next_page_token` value returned from a previous
-  /// `ListBackupCollections` request, if any.
-  public var pageToken: Swift.String = Swift.String()
+  /// Unordered list. Auth tokens that could not be reached.
+  public var unreachable: [Swift.String] = []
 
-  /// Initialize a new instance of `ListBackupCollectionsRequest`.
+  /// Initialize a new instance of `ListAuthTokensResponse`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +41,7 @@ public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ListBackupCollectionsRequest().with { $0.parent = ... }
+  /// let value = ListAuthTokensResponse().with { $0.authTokens = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -57,12 +50,20 @@ public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleCloudWkt._
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.memorystore.v1.ListBackupCollectionsRequest"
+    return "type.googleapis.com/google.cloud.memorystore.v1.ListAuthTokensResponse"
   }
   public init(fromAny any: GoogleCloudWkt.`Any`) throws {
     self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
   }
   public func _pack() throws -> GoogleCloudWkt.Struct {
     return try GoogleCloudWkt._slowAnySerialize(message: self)
+  }
+
+  public func _getPaginatedItems() -> [AuthToken] {
+    return self.authTokens
+  }
+
+  public func _nextPageToken() -> Swift.String {
+    return self.nextPageToken
   }
 }
