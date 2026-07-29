@@ -28,11 +28,11 @@ extension Clients {
   protocol MemorystoreStub {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
 
     func getInstance(
       request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Instance
+    ) async throws -> GoogleCloudMemoryStoreV1.Instance
 
     func createInstance(
       request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
@@ -48,11 +48,11 @@ extension Clients {
 
     func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority
 
     func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
 
     func rescheduleMaintenance(
       request: RescheduleMaintenanceRequest, options: GoogleCloudGax.RequestOptions
@@ -60,19 +60,19 @@ extension Clients {
 
     func listBackupCollections(
       request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
 
     func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.BackupCollection
+    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection
 
     func listBackups(
       request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse
 
     func getBackup(
       request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Backup
+    ) async throws -> GoogleCloudMemoryStoreV1.Backup
 
     func deleteBackup(
       request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
@@ -96,19 +96,19 @@ extension Clients {
 
     func listTokenAuthUsers(
       request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
 
     func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser
+    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser
 
     func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
 
     func getAuthToken(
       request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.AuthToken
+    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken
 
     func addTokenAuthUser(
       request: AddTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
@@ -161,7 +161,7 @@ extension Clients {
 
     public func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -181,12 +181,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.ListInstancesResponse.self, from: data)
+        GoogleCloudMemoryStoreV1.ListInstancesResponse.self, from: data)
     }
 
     public func getInstance(
       request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Instance {
+    ) async throws -> GoogleCloudMemoryStoreV1.Instance {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -201,7 +201,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.Instance.self, from: data)
+        GoogleCloudMemoryStoreV1.Instance.self, from: data)
     }
 
     public func createInstance(
@@ -283,7 +283,7 @@ extension Clients {
 
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority {
+    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -298,12 +298,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.CertificateAuthority.self, from: data)
+        GoogleCloudMemoryStoreV1.CertificateAuthority.self, from: data)
     }
 
     public func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -318,7 +318,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority.self, from: data)
+        GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority.self, from: data)
     }
 
     public func rescheduleMaintenance(
@@ -345,7 +345,7 @@ extension Clients {
 
     public func listBackupCollections(
       request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -363,12 +363,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.ListBackupCollectionsResponse.self, from: data)
+        GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse.self, from: data)
     }
 
     public func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.BackupCollection {
+    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -383,12 +383,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.BackupCollection.self, from: data)
+        GoogleCloudMemoryStoreV1.BackupCollection.self, from: data)
     }
 
     public func listBackups(
       request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -406,12 +406,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.ListBackupsResponse.self, from: data)
+        GoogleCloudMemoryStoreV1.ListBackupsResponse.self, from: data)
     }
 
     public func getBackup(
       request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Backup {
+    ) async throws -> GoogleCloudMemoryStoreV1.Backup {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -426,7 +426,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.Backup.self, from: data)
+        GoogleCloudMemoryStoreV1.Backup.self, from: data)
     }
 
     public func deleteBackup(
@@ -541,7 +541,7 @@ extension Clients {
 
     public func listTokenAuthUsers(
       request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -561,12 +561,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse.self, from: data)
+        GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse.self, from: data)
     }
 
     public func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser {
+    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -581,12 +581,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.TokenAuthUser.self, from: data)
+        GoogleCloudMemoryStoreV1.TokenAuthUser.self, from: data)
     }
 
     public func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -606,12 +606,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.ListAuthTokensResponse.self, from: data)
+        GoogleCloudMemoryStoreV1.ListAuthTokensResponse.self, from: data)
     }
 
     public func getAuthToken(
       request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.AuthToken {
+    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -626,7 +626,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudMemorystoreV1.AuthToken.self, from: data)
+        GoogleCloudMemoryStoreV1.AuthToken.self, from: data)
     }
 
     public func addTokenAuthUser(

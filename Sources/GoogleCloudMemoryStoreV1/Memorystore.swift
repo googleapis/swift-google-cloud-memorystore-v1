@@ -45,7 +45,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListInstances")
   public func listInstances(
     request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
     try await self.inner.listInstances(request: request, options: options)
   }
 
@@ -56,7 +56,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
     byItem: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
@@ -69,7 +69,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetInstance")
   public func getInstance(
     request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.Instance {
+  ) async throws -> GoogleCloudMemoryStoreV1.Instance {
     try await self.inner.getInstance(request: request, options: options)
   }
 
@@ -259,7 +259,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetCertificateAuthority")
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
     try await self.inner.getCertificateAuthority(request: request, options: options)
   }
 
@@ -269,7 +269,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetSharedRegionalCertificateAuthority")
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
     try await self.inner.getSharedRegionalCertificateAuthority(request: request, options: options)
   }
 
@@ -345,7 +345,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListBackupCollections")
   public func listBackupCollections(
     request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
     try await self.inner.listBackupCollections(request: request, options: options)
   }
 
@@ -360,7 +360,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
     byItem: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<BackupCollection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
       in
       var request = byItem
       request.pageToken = token
@@ -374,7 +374,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetBackupCollection")
   public func getBackupCollection(
     request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.BackupCollection {
+  ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
     try await self.inner.getBackupCollection(request: request, options: options)
   }
 
@@ -383,7 +383,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListBackups")
   public func listBackups(
     request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
     try await self.inner.listBackups(request: request, options: options)
   }
 
@@ -394,7 +394,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
     byItem: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
@@ -407,7 +407,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetBackup")
   public func getBackup(
     request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.Backup {
+  ) async throws -> GoogleCloudMemoryStoreV1.Backup {
     try await self.inner.getBackup(request: request, options: options)
   }
 
@@ -769,7 +769,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
   public func listTokenAuthUsers(
     request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
     try await self.inner.listTokenAuthUsers(request: request, options: options)
   }
 
@@ -780,7 +780,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
     byItem: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TokenAuthUser, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listTokenAuthUsers(request: request, options: options)
@@ -793,7 +793,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetTokenAuthUser")
   public func getTokenAuthUser(
     request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser {
+  ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
     try await self.inner.getTokenAuthUser(request: request, options: options)
   }
 
@@ -802,7 +802,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListAuthTokens")
   public func listAuthTokens(
     request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
     try await self.inner.listAuthTokens(request: request, options: options)
   }
 
@@ -813,7 +813,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
     byItem: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AuthToken, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listAuthTokens(request: request, options: options)
@@ -826,7 +826,7 @@ public class MemorystoreClient: Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_GetAuthToken")
   public func getAuthToken(
     request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.AuthToken {
+  ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
     try await self.inner.getAuthToken(request: request, options: options)
   }
 
@@ -1204,7 +1204,7 @@ extension Clients {
   public protocol MemorystoreProtocol {
     /// See `MemorystoreClient.listInstances`.
     func listInstances(request: ListInstancesRequest) async throws
-      -> GoogleCloudMemorystoreV1.ListInstancesResponse
+      -> GoogleCloudMemoryStoreV1.ListInstancesResponse
 
     /// See `MemorystoreClient.listInstances`.
     func listInstances(
@@ -1217,12 +1217,12 @@ extension Clients {
     ) throws -> any AsyncSequence<Instance, Swift.Error>
 
     /// See `MemorystoreClient.getInstance`.
-    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudMemorystoreV1.Instance
+    func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudMemoryStoreV1.Instance
 
     /// See `MemorystoreClient.getInstance`.
     func getInstance(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.Instance
+    ) async throws -> GoogleCloudMemoryStoreV1.Instance
 
     /// See `MemorystoreClient.createInstance`.
     func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongrunning.Operation
@@ -1265,22 +1265,22 @@ extension Clients {
 
     /// See `MemorystoreClient.getCertificateAuthority`.
     func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
-      -> GoogleCloudMemorystoreV1.CertificateAuthority
+      -> GoogleCloudMemoryStoreV1.CertificateAuthority
 
     /// See `MemorystoreClient.getCertificateAuthority`.
     func getCertificateAuthority(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority
 
     /// See `MemorystoreClient.getSharedRegionalCertificateAuthority`.
     func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
 
     /// See `MemorystoreClient.getSharedRegionalCertificateAuthority`.
     func getSharedRegionalCertificateAuthority(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
     func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
@@ -1299,7 +1299,7 @@ extension Clients {
 
     /// See `MemorystoreClient.listBackupCollections`.
     func listBackupCollections(request: ListBackupCollectionsRequest) async throws
-      -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+      -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
 
     /// See `MemorystoreClient.listBackupCollections`.
     func listBackupCollections(
@@ -1313,16 +1313,16 @@ extension Clients {
 
     /// See `MemorystoreClient.getBackupCollection`.
     func getBackupCollection(request: GetBackupCollectionRequest) async throws
-      -> GoogleCloudMemorystoreV1.BackupCollection
+      -> GoogleCloudMemoryStoreV1.BackupCollection
 
     /// See `MemorystoreClient.getBackupCollection`.
     func getBackupCollection(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.BackupCollection
+    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection
 
     /// See `MemorystoreClient.listBackups`.
     func listBackups(request: ListBackupsRequest) async throws
-      -> GoogleCloudMemorystoreV1.ListBackupsResponse
+      -> GoogleCloudMemoryStoreV1.ListBackupsResponse
 
     /// See `MemorystoreClient.listBackups`.
     func listBackups(
@@ -1335,12 +1335,12 @@ extension Clients {
     ) throws -> any AsyncSequence<Backup, Swift.Error>
 
     /// See `MemorystoreClient.getBackup`.
-    func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemorystoreV1.Backup
+    func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemoryStoreV1.Backup
 
     /// See `MemorystoreClient.getBackup`.
     func getBackup(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.Backup
+    ) async throws -> GoogleCloudMemoryStoreV1.Backup
 
     /// See `MemorystoreClient.deleteBackup`.
     func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongrunning.Operation
@@ -1396,7 +1396,7 @@ extension Clients {
 
     /// See `MemorystoreClient.listTokenAuthUsers`.
     func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
-      -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse
+      -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
 
     /// See `MemorystoreClient.listTokenAuthUsers`.
     func listTokenAuthUsers(
@@ -1410,16 +1410,16 @@ extension Clients {
 
     /// See `MemorystoreClient.getTokenAuthUser`.
     func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
-      -> GoogleCloudMemorystoreV1.TokenAuthUser
+      -> GoogleCloudMemoryStoreV1.TokenAuthUser
 
     /// See `MemorystoreClient.getTokenAuthUser`.
     func getTokenAuthUser(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser
+    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser
 
     /// See `MemorystoreClient.listAuthTokens`.
     func listAuthTokens(request: ListAuthTokensRequest) async throws
-      -> GoogleCloudMemorystoreV1.ListAuthTokensResponse
+      -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
 
     /// See `MemorystoreClient.listAuthTokens`.
     func listAuthTokens(
@@ -1433,12 +1433,12 @@ extension Clients {
 
     /// See `MemorystoreClient.getAuthToken`.
     func getAuthToken(request: GetAuthTokenRequest) async throws
-      -> GoogleCloudMemorystoreV1.AuthToken
+      -> GoogleCloudMemoryStoreV1.AuthToken
 
     /// See `MemorystoreClient.getAuthToken`.
     func getAuthToken(
       name: Swift.String,
-    ) async throws -> GoogleCloudMemorystoreV1.AuthToken
+    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken
 
     /// See `MemorystoreClient.addTokenAuthUser`.
     func addTokenAuthUser(request: AddTokenAuthUserRequest) async throws
@@ -1540,7 +1540,7 @@ extension Clients {
     /// See `MemorystoreClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
 
     /// See `MemorystoreClient.listInstances`.
     func listInstances(
@@ -1550,7 +1550,7 @@ extension Clients {
     /// See `MemorystoreClient.getInstance`.
     func getInstance(
       request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Instance
+    ) async throws -> GoogleCloudMemoryStoreV1.Instance
 
     /// See `MemorystoreClient.createInstance`.
     func createInstance(
@@ -1585,12 +1585,12 @@ extension Clients {
     /// See `MemorystoreClient.getCertificateAuthority`.
     func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority
 
     /// See `MemorystoreClient.getSharedRegionalCertificateAuthority`.
     func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
 
     /// See `MemorystoreClient.rescheduleMaintenance`.
     func rescheduleMaintenance(
@@ -1605,7 +1605,7 @@ extension Clients {
     /// See `MemorystoreClient.listBackupCollections`.
     func listBackupCollections(
       request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
 
     /// See `MemorystoreClient.listBackupCollections`.
     func listBackupCollections(
@@ -1615,12 +1615,12 @@ extension Clients {
     /// See `MemorystoreClient.getBackupCollection`.
     func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.BackupCollection
+    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection
 
     /// See `MemorystoreClient.listBackups`.
     func listBackups(
       request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse
 
     /// See `MemorystoreClient.listBackups`.
     func listBackups(
@@ -1630,7 +1630,7 @@ extension Clients {
     /// See `MemorystoreClient.getBackup`.
     func getBackup(
       request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Backup
+    ) async throws -> GoogleCloudMemoryStoreV1.Backup
 
     /// See `MemorystoreClient.deleteBackup`.
     func deleteBackup(
@@ -1685,7 +1685,7 @@ extension Clients {
     /// See `MemorystoreClient.listTokenAuthUsers`.
     func listTokenAuthUsers(
       request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
 
     /// See `MemorystoreClient.listTokenAuthUsers`.
     func listTokenAuthUsers(
@@ -1695,12 +1695,12 @@ extension Clients {
     /// See `MemorystoreClient.getTokenAuthUser`.
     func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser
+    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser
 
     /// See `MemorystoreClient.listAuthTokens`.
     func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
 
     /// See `MemorystoreClient.listAuthTokens`.
     func listAuthTokens(
@@ -1710,7 +1710,7 @@ extension Clients {
     /// See `MemorystoreClient.getAuthToken`.
     func getAuthToken(
       request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.AuthToken
+    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken
 
     /// See `MemorystoreClient.addTokenAuthUser`.
     func addTokenAuthUser(
@@ -1792,14 +1792,14 @@ extension Clients {
 // Default implementations
 extension Clients.MemorystoreProtocol {
   public func listInstances(request: ListInstancesRequest) async throws
-    -> GoogleCloudMemorystoreV1.ListInstancesResponse
+    -> GoogleCloudMemoryStoreV1.ListInstancesResponse
   {
     try await self.listInstances(request: request, options: .init())
   }
 
   public func listInstances(
     request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1813,7 +1813,7 @@ extension Clients.MemorystoreProtocol {
     byItem: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Instance, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1829,20 +1829,20 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
-    -> GoogleCloudMemorystoreV1.Instance
+    -> GoogleCloudMemoryStoreV1.Instance
   {
     try await self.getInstance(request: request, options: .init())
   }
 
   public func getInstance(
     request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.Instance {
+  ) async throws -> GoogleCloudMemoryStoreV1.Instance {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getInstance(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.Instance {
+  ) async throws -> GoogleCloudMemoryStoreV1.Instance {
     let request = GetInstanceRequest().with {
       $0.name = name
     }
@@ -1967,20 +1967,20 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
-    -> GoogleCloudMemorystoreV1.CertificateAuthority
+    -> GoogleCloudMemoryStoreV1.CertificateAuthority
   {
     try await self.getCertificateAuthority(request: request, options: .init())
   }
 
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCertificateAuthority(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
     let request = GetCertificateAuthorityRequest().with {
       $0.name = name
     }
@@ -1989,19 +1989,19 @@ extension Clients.MemorystoreProtocol {
 
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest
-  ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
     try await self.getSharedRegionalCertificateAuthority(request: request, options: .init())
   }
 
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getSharedRegionalCertificateAuthority(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+  ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
     let request = GetSharedRegionalCertificateAuthorityRequest().with {
       $0.name = name
     }
@@ -2050,14 +2050,14 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func listBackupCollections(request: ListBackupCollectionsRequest) async throws
-    -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+    -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
   {
     try await self.listBackupCollections(request: request, options: .init())
   }
 
   public func listBackupCollections(
     request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2071,7 +2071,7 @@ extension Clients.MemorystoreProtocol {
     byItem: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<BackupCollection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
       in
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2088,20 +2088,20 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func getBackupCollection(request: GetBackupCollectionRequest) async throws
-    -> GoogleCloudMemorystoreV1.BackupCollection
+    -> GoogleCloudMemoryStoreV1.BackupCollection
   {
     try await self.getBackupCollection(request: request, options: .init())
   }
 
   public func getBackupCollection(
     request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.BackupCollection {
+  ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getBackupCollection(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.BackupCollection {
+  ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
     let request = GetBackupCollectionRequest().with {
       $0.name = name
     }
@@ -2109,14 +2109,14 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func listBackups(request: ListBackupsRequest) async throws
-    -> GoogleCloudMemorystoreV1.ListBackupsResponse
+    -> GoogleCloudMemoryStoreV1.ListBackupsResponse
   {
     try await self.listBackups(request: request, options: .init())
   }
 
   public func listBackups(
     request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2130,7 +2130,7 @@ extension Clients.MemorystoreProtocol {
     byItem: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Backup, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2145,19 +2145,19 @@ extension Clients.MemorystoreProtocol {
     return try self.listBackups(byItem: request)
   }
 
-  public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemorystoreV1.Backup {
+  public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemoryStoreV1.Backup {
     try await self.getBackup(request: request, options: .init())
   }
 
   public func getBackup(
     request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.Backup {
+  ) async throws -> GoogleCloudMemoryStoreV1.Backup {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getBackup(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.Backup {
+  ) async throws -> GoogleCloudMemoryStoreV1.Backup {
     let request = GetBackupRequest().with {
       $0.name = name
     }
@@ -2332,14 +2332,14 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
-    -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse
+    -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
   {
     try await self.listTokenAuthUsers(request: request, options: .init())
   }
 
   public func listTokenAuthUsers(
     request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2353,7 +2353,7 @@ extension Clients.MemorystoreProtocol {
     byItem: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TokenAuthUser, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2369,20 +2369,20 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
-    -> GoogleCloudMemorystoreV1.TokenAuthUser
+    -> GoogleCloudMemoryStoreV1.TokenAuthUser
   {
     try await self.getTokenAuthUser(request: request, options: .init())
   }
 
   public func getTokenAuthUser(
     request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser {
+  ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getTokenAuthUser(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser {
+  ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
     let request = GetTokenAuthUserRequest().with {
       $0.name = name
     }
@@ -2390,14 +2390,14 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func listAuthTokens(request: ListAuthTokensRequest) async throws
-    -> GoogleCloudMemorystoreV1.ListAuthTokensResponse
+    -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
   {
     try await self.listAuthTokens(request: request, options: .init())
   }
 
   public func listAuthTokens(
     request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse {
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2411,7 +2411,7 @@ extension Clients.MemorystoreProtocol {
     byItem: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AuthToken, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse in
+      (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2427,20 +2427,20 @@ extension Clients.MemorystoreProtocol {
   }
 
   public func getAuthToken(request: GetAuthTokenRequest) async throws
-    -> GoogleCloudMemorystoreV1.AuthToken
+    -> GoogleCloudMemoryStoreV1.AuthToken
   {
     try await self.getAuthToken(request: request, options: .init())
   }
 
   public func getAuthToken(
     request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudMemorystoreV1.AuthToken {
+  ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getAuthToken(
     name: Swift.String,
-  ) async throws -> GoogleCloudMemorystoreV1.AuthToken {
+  ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
     let request = GetAuthTokenRequest().with {
       $0.name = name
     }

@@ -23,52 +23,44 @@ import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 import GoogleCloudGax
-import struct Logging.Logger
 
 extension Clients {
-  final class MemorystoreLogging: MemorystoreStub {
+  final class MemorystoreRetry: MemorystoreStub {
     let inner: any MemorystoreStub
-    let logger: Logger
+    let options: GoogleCloudGax.ClientOptions
 
-    public init(_ inner: any MemorystoreStub, logger: Logger) {
-      var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-memorystore-v1"
-      logger[metadataKey: "gcp.client.service"] = "memorystore"
-      logger[metadataKey: "gcp.experimental.swift.client"] = "Memorystore"
+    public init(_ inner: any MemorystoreStub, options: GoogleCloudGax.ClientOptions) {
       self.inner = inner
-      self.logger = logger
+      self.options = options
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      name: Swift.String,
+      idempotent: Swift.Bool,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      var logger = logger
-      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
-      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
-      logger.debug("enter  : \(request) \(options)")
-      do {
-        let output = try await action(request, options)
-        logger.debug("success: \(request) \(options) \(output)")
-        return output
-      } catch let error {
-        logger.debug("error  : \(request) \(options) \(error)")
-        throw error
+      let loop = GoogleCloudGax._RetryLoop(
+        options: options, withDefault: self.options, idempotent: idempotent,
+      )
+      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
+        var attemptOptions = options
+        attemptOptions.attemptTimeout = attemptTimeout
+        return try await action(request, attemptOptions)
       }
+      return try await loop.run(attempt: attempt)
     }
 
     public func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListInstancesResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listInstances",
+        idempotent: true,
         action: {
           (r: ListInstancesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.ListInstancesResponse
+            -> GoogleCloudMemoryStoreV1.ListInstancesResponse
           in
           return try await self.inner.listInstances(request: r, options: o)
         })
@@ -76,14 +68,14 @@ extension Clients {
 
     public func getInstance(
       request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Instance {
+    ) async throws -> GoogleCloudMemoryStoreV1.Instance {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getInstance",
+        idempotent: true,
         action: {
           (r: GetInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.Instance
+            -> GoogleCloudMemoryStoreV1.Instance
           in
           return try await self.inner.getInstance(request: r, options: o)
         })
@@ -95,7 +87,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createInstance",
+        idempotent: false,
         action: {
           (r: CreateInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -110,7 +102,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateInstance",
+        idempotent: false,
         action: {
           (r: UpdateInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -125,7 +117,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteInstance",
+        idempotent: false,
         action: {
           (r: DeleteInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -136,14 +128,14 @@ extension Clients {
 
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.CertificateAuthority {
+    ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCertificateAuthority",
+        idempotent: true,
         action: {
           (r: GetCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.CertificateAuthority
+            -> GoogleCloudMemoryStoreV1.CertificateAuthority
           in
           return try await self.inner.getCertificateAuthority(request: r, options: o)
         })
@@ -151,14 +143,14 @@ extension Clients {
 
     public func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority {
+    ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getSharedRegionalCertificateAuthority",
+        idempotent: true,
         action: {
           (r: GetSharedRegionalCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions)
-            async throws -> GoogleCloudMemorystoreV1.SharedRegionalCertificateAuthority
+            async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority
           in
           return try await self.inner.getSharedRegionalCertificateAuthority(request: r, options: o)
         })
@@ -170,7 +162,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "rescheduleMaintenance",
+        idempotent: false,
         action: {
           (r: RescheduleMaintenanceRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -181,14 +173,14 @@ extension Clients {
 
     public func listBackupCollections(
       request: ListBackupCollectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listBackupCollections",
+        idempotent: true,
         action: {
           (r: ListBackupCollectionsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.ListBackupCollectionsResponse
+            -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
           in
           return try await self.inner.listBackupCollections(request: r, options: o)
         })
@@ -196,14 +188,14 @@ extension Clients {
 
     public func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.BackupCollection {
+    ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getBackupCollection",
+        idempotent: true,
         action: {
           (r: GetBackupCollectionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.BackupCollection
+            -> GoogleCloudMemoryStoreV1.BackupCollection
           in
           return try await self.inner.getBackupCollection(request: r, options: o)
         })
@@ -211,14 +203,14 @@ extension Clients {
 
     public func listBackups(
       request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListBackupsResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listBackups",
+        idempotent: true,
         action: {
           (r: ListBackupsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.ListBackupsResponse
+            -> GoogleCloudMemoryStoreV1.ListBackupsResponse
           in
           return try await self.inner.listBackups(request: r, options: o)
         })
@@ -226,14 +218,14 @@ extension Clients {
 
     public func getBackup(
       request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.Backup {
+    ) async throws -> GoogleCloudMemoryStoreV1.Backup {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getBackup",
+        idempotent: true,
         action: {
           (r: GetBackupRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.Backup
+            -> GoogleCloudMemoryStoreV1.Backup
           in
           return try await self.inner.getBackup(request: r, options: o)
         })
@@ -245,7 +237,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteBackup",
+        idempotent: false,
         action: {
           (r: DeleteBackupRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -260,7 +252,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "exportBackup",
+        idempotent: false,
         action: {
           (r: ExportBackupRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -275,7 +267,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "backupInstance",
+        idempotent: false,
         action: {
           (r: BackupInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -290,7 +282,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "startMigration",
+        idempotent: false,
         action: {
           (r: StartMigrationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -305,7 +297,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "finishMigration",
+        idempotent: false,
         action: {
           (r: FinishMigrationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -316,14 +308,14 @@ extension Clients {
 
     public func listTokenAuthUsers(
       request: ListTokenAuthUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listTokenAuthUsers",
+        idempotent: true,
         action: {
           (r: ListTokenAuthUsersRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.ListTokenAuthUsersResponse
+            -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
           in
           return try await self.inner.listTokenAuthUsers(request: r, options: o)
         })
@@ -331,14 +323,14 @@ extension Clients {
 
     public func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.TokenAuthUser {
+    ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getTokenAuthUser",
+        idempotent: true,
         action: {
           (r: GetTokenAuthUserRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.TokenAuthUser
+            -> GoogleCloudMemoryStoreV1.TokenAuthUser
           in
           return try await self.inner.getTokenAuthUser(request: r, options: o)
         })
@@ -346,14 +338,14 @@ extension Clients {
 
     public func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.ListAuthTokensResponse {
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listAuthTokens",
+        idempotent: true,
         action: {
           (r: ListAuthTokensRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.ListAuthTokensResponse
+            -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
           in
           return try await self.inner.listAuthTokens(request: r, options: o)
         })
@@ -361,14 +353,14 @@ extension Clients {
 
     public func getAuthToken(
       request: GetAuthTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudMemorystoreV1.AuthToken {
+    ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getAuthToken",
+        idempotent: true,
         action: {
           (r: GetAuthTokenRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudMemorystoreV1.AuthToken
+            -> GoogleCloudMemoryStoreV1.AuthToken
           in
           return try await self.inner.getAuthToken(request: r, options: o)
         })
@@ -380,7 +372,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "addTokenAuthUser",
+        idempotent: false,
         action: {
           (r: AddTokenAuthUserRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -395,7 +387,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteTokenAuthUser",
+        idempotent: false,
         action: {
           (r: DeleteTokenAuthUserRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -410,7 +402,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "addAuthToken",
+        idempotent: false,
         action: {
           (r: AddAuthTokenRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -425,7 +417,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteAuthToken",
+        idempotent: false,
         action: {
           (r: DeleteAuthTokenRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -440,7 +432,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listLocations",
+        idempotent: true,
         action: {
           (r: GoogleCloudLocation.ListLocationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleCloudLocation.ListLocationsResponse
@@ -455,7 +447,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getLocation",
+        idempotent: true,
         action: {
           (r: GoogleCloudLocation.GetLocationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleCloudLocation.Location
@@ -470,7 +462,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listOperations",
+        idempotent: true,
         action: {
           (r: GoogleLongrunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleLongrunning.ListOperationsResponse
@@ -485,7 +477,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getOperation",
+        idempotent: true,
         action: {
           (r: GoogleLongrunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -500,7 +492,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteOperation",
+        idempotent: false,
         action: {
           (r: GoogleLongrunning.DeleteOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
@@ -514,7 +506,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "cancelOperation",
+        idempotent: false,
         action: {
           (r: GoogleLongrunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
